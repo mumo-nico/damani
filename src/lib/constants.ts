@@ -43,9 +43,9 @@ export const HERO_SLIDES = [
 
 export const STATS = [
   { value: "5+", label: "Years Experience" },
-  { value: "50+", label: "Happy Clients" },
+  { value: "10+", label: "Happy Clients" },
   { value: "98%", label: "Success Rate" },
-  { value: "24/7", label: "Support Available" },
+  { value: "24 / 7", label: "Support Available" },
 ];
 
 export const SERVICES = [
