@@ -5,14 +5,11 @@ import { motion, useInView } from "framer-motion";
 import { STATS } from "@/lib/constants";
 import { ScrollReveal } from "@/components/animations";
 
-function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) {
-  const [displayValue, setDisplayValue] = useState("0");
+function AnimatedCounter({ value, inView, animate = true }: { value: string; inView: boolean; animate?: boolean }) {
+  const [displayValue, setDisplayValue] = useState(value);
   
-  // Check if value contains any digits
-  const hasNumbers = /\d/.test(value);
-  
-  // If no numbers (like "24/7"), just display as-is
-  if (!hasNumbers) {
+  // If animate is false, just display the value as-is
+  if (!animate) {
     return <span>{value}</span>;
   }
   
@@ -73,7 +70,7 @@ export default function Stats() {
               className="text-center"
             >
               <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#001F3F] mb-2">
-                <AnimatedCounter value={stat.value} inView={isInView} />
+                <AnimatedCounter value={stat.value} inView={isInView} animate={stat.animate} />
               </div>
               <p className="text-gray-600 text-sm md:text-base">{stat.label}</p>
             </motion.div>
