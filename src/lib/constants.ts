@@ -42,12 +42,11 @@ export const HERO_SLIDES = [
 ];
 
 export const STATS = [
-  { value: "5+", label: "Years Experience" },
-  { value: "10+", label: "Happy Clients" },
-  { value: "98%", label: "Success Rate" },
-  { value: "24/7", label: "Support Available" },
+  { value: "5+", label: "Years Experience", animate: true },
+  { value: "10+", label: "Happy Clients", animate: true },
+  { value: "98%", label: "Success Rate", animate: true },
+  { value: "24/7", label: "Support Available", animate: false },
 ];
-
 export const SERVICES = [
   {
     id: "web-systems",
