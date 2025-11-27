@@ -7,6 +7,15 @@ import { ScrollReveal } from "@/components/animations";
 
 function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) {
   const [displayValue, setDisplayValue] = useState("0");
+  
+  // Check if value contains any digits
+  const hasNumbers = /\d/.test(value);
+  
+  // If no numbers (like "24/7"), just display as-is
+  if (!hasNumbers) {
+    return <span>{value}</span>;
+  }
+  
   const numericPart = value.replace(/[^0-9]/g, "");
   const suffix = value.replace(/[0-9]/g, "");
 
