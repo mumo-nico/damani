@@ -1,0 +1,160 @@
+// Prisma Schema for Damani Nexus Limited
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  role          String    @default("user") // user, admin, vendor, blogger
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  account       Account?
+  consultations Consultation[]
+  blogPosts     BlogPost[]
+  shopProducts  ShopProduct[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @unique
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// Blog models
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String   @db.Text
+  excerpt   String?
+  image     String?
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  category  String
+  status    String   @default("draft") // draft, published, archived
+  featured  Boolean  @default(false)
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comments Comment[]
+
+  @@index([authorId])
+  @@index([slug])
+  @@map("blog_posts")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  post      BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  author    String
+  email     String
+  createdAt DateTime @default(now())
+
+  @@index([postId])
+  @@map("comments")
+}
+
+// Shop models
+model ShopProduct {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String   @db.Text
+  price       Float
+  image       String?
+  images      String[] @default([])
+  category    String
+  vendor      User     @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  vendorId    String
+  stock       Int      @default(0)
+  rating      Float    @default(0)
+  reviews     Int      @default(0)
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orders OrderItem[]
+
+  @@index([vendorId])
+  @@index([slug])
+  @@map("shop_products")
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNumber   String      @unique
+  items         OrderItem[]
+  totalPrice    Float
+  status        String      @default("pending") // pending, processing, shipped, delivered
+  customerName  String
+  customerEmail String
+  customerPhone String
+  address       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String      @id @default(cuid())
+  quantity  Int
+  price     Float
+  product   ShopProduct @relation(fields: [productId], references: [id])
+  productId String
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+
+  @@map("order_items")
+}
+
+// Consultation/Lead model
+model Consultation {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  company   String?
+  service   String
+  message   String   @db.Text
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String?
+  status    String   @default("new") // new, contacted, scheduled, completed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@map("consultations")
+}
+
