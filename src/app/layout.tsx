@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Damani Nexus Limited" }],
   icons: {
-    icon: "/damani_svg.svg",
-    shortcut: "/damani_svg.svg",
-    apple: "/damani_svg.svg",
+    icon: "/damani-favicon.jpeg",
+    shortcut: "/damani-favicon.jpeg",
+    apple: "/damani-favicon.jpeg",
   },
   openGraph: {
     title: "Damani Nexus Limited | Tech for Every Terrain",
