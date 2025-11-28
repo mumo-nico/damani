@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description:
     "Transforming ideas into powerful digital solutions. We provide custom systems, ERP, financial systems, GIS services, and IoT solutions for businesses across East Africa.",
   keywords: [
+    "Damani Nexus",
+    "Damani Nexus Limited",
+    "Damani",
+    "Systems Vendor",
     "ERP Systems",
     "Custom Software",
     "GIS Services",
@@ -18,9 +22,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Damani Nexus Limited" }],
   icons: {
-    icon: "/damani-favicon.jpeg",
-    shortcut: "/damani-favicon.jpeg",
-    apple: "/damani-favicon.jpeg",
+    icon: "/damani_svg.svg",
+    shortcut: "/damani_svg.svg",
+    apple: "/damani_svg.svg",
   },
   openGraph: {
     title: "Damani Nexus Limited | Tech for Every Terrain",
