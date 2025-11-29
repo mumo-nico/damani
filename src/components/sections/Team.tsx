@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Mail, Github, Phone } from "lucide-react";
 import { TEAM_MEMBERS } from "@/lib/constants";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { StaggerContainer, StaggerItem } from "@/components/animations";
 import { SectionHeading } from "@/components/ui";
 
 export default function Team() {
@@ -24,14 +23,11 @@ export default function Team() {
                 whileHover={{ y: -5 }}
                 className="bg-[#F8F9FA] rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row"
               >
-                {/* Image Container - Left Side */}
-                <div className="relative w-full md:w-64 h-64 md:h-auto flex-shrink-0 overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-center"
-                  />
+                {/* Initials Placeholder - Left Side */}
+                <div className="relative w-full md:w-64 h-64 md:h-auto flex-shrink-0 bg-gradient-to-br from-[#001F3F] to-[#003366] flex items-center justify-center">
+                  <span className="text-8xl md:text-9xl font-bold text-white/20">
+                    {member.initials}
+                  </span>
                 </div>
 
                 {/* Info - Right Side */}

@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DAMANI_DB_PRISMA_DATABASE_URL")
 }
 
 // User model for authentication
@@ -144,10 +144,11 @@ model Consultation {
   id        String   @id @default(cuid())
   name      String
   email     String
-  phone     String
+  phone     String?
   company   String?
-  service   String
+  service   String?
   message   String   @db.Text
+  source    String?  @default("Website Contact Form")
   user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId    String?
   status    String   @default("new") // new, contacted, scheduled, completed

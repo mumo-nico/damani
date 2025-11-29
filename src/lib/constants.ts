@@ -143,10 +143,10 @@ export const TEAM_MEMBERS = [
   {
     name: "Nicholas Mumo",
     role: "Software Engineer",
-    phone: "+254 758 815 721 / +254 791 168 366",
+    phone: "+254 758 815 721",
     email: "mumo@damaninexus.com",
     altEmail: "nikolasmumo27@gmail.com",
-    image: "/profile/mumo.jpeg",
+    initials: "N",
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -154,12 +154,12 @@ export const TEAM_MEMBERS = [
     },
   },
   {
-    name: "Ogango Omondi",
+    name: "Jackton Martin",
     role: "Geospatial Engineer",
-    phone: "+254 797 487 023 / +254 746 354 920",
-    email: "ogango@damaninexus.com",
-    altEmail: "jacton.ogango@gmail.com",
-    image: "/profile/omondi.jpeg",
+    phone: "+254 797 487 023",
+    email: "jackton@damaninexus.com",
+    altEmail: "info@damaninexus.com",
+    initials: "J",
     socials: {
       linkedin: "#",
       twitter: "#",

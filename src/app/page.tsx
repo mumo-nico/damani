@@ -6,6 +6,7 @@ import {
   IoTProducts,
   Team,
   CTA,
+  TechSlider,
 } from "@/components/sections";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Services />
       <TechServices />
       <IoTProducts />
+      <TechSlider />
       <Team />
       <CTA />
     </>
